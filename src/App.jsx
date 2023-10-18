@@ -1,30 +1,39 @@
 import React, { useState } from 'react';
+import Display from './Components/Display';
+
+
+function Button({ handleClick, name }) {
+  console.log(name);
+  return (
+    <button onClick={handleClick}>{ name }</button>
+  )
+}
 
 function App() {
 
   const [counter, setCounter] = useState(0);
+  function handlePlusClick() {
+    setCounter(counter + 1);	    
+  }	  
+  function handleMinusClick() {	  
+    setCounter(counter - 1);	    
+  }	  
+  function handleZeroClick() {	  
+    setCounter(0);	   
+  }	  
 
-
-  function handleClick() {
-    setCounter(counter + 1);
-  }
-  function handling(){
-    setCounter(counter-1);
-  }
-  function refresh(){
-    setCounter(0);
-  }
-
-  return (
+  return(
     <div>
-      <p>{ counter }</p>
-      <button onClick={handleClick}>plus</button>
-      <button onClick={handling}>minus</button>
-      <button onClick={refresh}>restart</button>
+    <Display counter={counter}/>
+    <Button handleClick={handlePlusClick} name='plus'/>
+    <Button handleClick={handleMinusClick} name='minus'/>
+    <Button handleClick={handleZeroClick} name='restart'/>
     </div>
   )
+
+
+
+  
 }
 
 export default App;
-
-
