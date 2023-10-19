@@ -1,39 +1,30 @@
-import React, { useState } from 'react';
-import Display from './Components/Display';
-
-
-function Button({ handleClick, name }) {
-  console.log(name);
-  return (
-    <button onClick={handleClick}>{ name }</button>
-  )
-}
-
+import React from 'react'
+import { Link, Route, BrowserRouter as  Router, Routes } from 'react-router-dom'
+import Home from './Components/Home'
+import Note from './Components/Note'
+import Users from './Components/Users'
 function App() {
+  const padding={
+    padding:5
 
-  const [counter, setCounter] = useState(0);
-  function handlePlusClick() {
-    setCounter(counter + 1);	    
-  }	  
-  function handleMinusClick() {	  
-    setCounter(counter - 1);	    
-  }	  
-  function handleZeroClick() {	  
-    setCounter(0);	   
-  }	  
-
-  return(
-    <div>
-    <Display counter={counter}/>
-    <Button handleClick={handlePlusClick} name='plus'/>
-    <Button handleClick={handleMinusClick} name='minus'/>
-    <Button handleClick={handleZeroClick} name='restart'/>
-    </div>
-  )
+  }
+  return (
+    <Router>
+<div>
+  <Link to='/' style={padding}>home</Link>
+  <Link to={'/notes'} style={padding}>notes</Link>
+  <Link to={'/users'} style={padding}>users</Link>
 
 
+</div>
+ <Routes>
+<Route path='/' element={<Home />}/>
+<Route path='/notes' element={<Note />}/>
+<Route path='/users' element={<Users />}/> 
 
-  
-}
+ </Routes> 
+    </Router>
+  )                  
 
-export default App;
+  }
+export default App
